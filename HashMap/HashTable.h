@@ -43,8 +43,33 @@ public:
 		//Now perform lookup , first at index then in linked-list's
 		if (hash_table[hash] == nullptr)
 		{   
-			int error_code = -INT32_MAX;
-			return error_code;
+
+
+			//                 PROBEM
+
+			//Error , cant set new values like      fav_num["Ali"] = 1900;
+			//Because of following code
+			//When finding hash index NUll like above 
+			//Code just returns garbage value
+			//We want to create a new index hash location in hash table
+			//And return the value location inside that hashnode from here
+
+
+			//                 SOLUTION
+
+			/*
+			 *   Ok so here's how i am going to fix it
+			 *   call the regular add function pass the key's calculated hash
+			 *   and for value which we dont have right now some garbarge value
+			 *   and then return the memory referecne of that garbage value
+			 *   this way it can be reset in the calling function
+			 */
+  
+			add(to_look, -INT32_MAX);
+
+			//get value
+			return this->operator[](to_look);
+
 		}
 		else if (hash_table[hash]->getKey() == to_look)
 		{
