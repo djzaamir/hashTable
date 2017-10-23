@@ -117,6 +117,42 @@ public:
 			hash_table[hash] = new HashNode<valType>(_key, _value);
 		}
 	}
+
+	//remove function
+	void remove(const char* _key)
+	{
+		int hash = hashIt(_key);
+		if (hash_table[hash] != nullptr)
+		{
+			//then , first look for key on the current index
+			if (hash_table[hash]->getKey() == _key)
+			{
+
+				/*
+				 *   This is not good , we still could have a linked-list in the object
+				 *   By doing this that will be lost too
+				 *
+				 *
+				 *
+				 */
+
+				hash_table = nullptr;
+			}
+			//othewise look in linked-list
+			else
+			{
+				HashNode<valType> *temp = hash_table[hash]->next;
+				while (temp != nullptr)
+				{
+					if (temp->getKey() == _key)
+					{
+						//at this point we have to readjust linked-list pointer's
+
+					}
+				}
+			}
+		}
+	}
 #pragma endregion
 
 #pragma region Private Functional Area
