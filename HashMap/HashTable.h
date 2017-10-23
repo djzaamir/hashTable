@@ -35,16 +35,16 @@ public:
 
 #pragma region Operators and Public functions
 	//Operator overload to get key easily
-	const valType& operator[](const char* to_look)
+	 valType& operator[](const char* to_look)
 	{
 		//first calculate hash 
 		int hash = hashIt(to_look);
 
 		//Now perform lookup , first at index then in linked-list's
 		if (hash_table[hash] == nullptr)
-		{
-			return -INT32_MAX;
-
+		{   
+			int error_code = -INT32_MAX;
+			return error_code;
 		}
 		else if (hash_table[hash]->getKey() == to_look)
 		{
@@ -64,13 +64,6 @@ public:
 		}
 	}
 
-	//Operator overload to set key
-	void operator[](const char* _key , const valType& _value)
-	{
-		//just call the underlying add function
-		add(_key, _value);
-	}
-
 	//add function
 	void add(const char* _key, const valType _value)
 	{
@@ -83,7 +76,7 @@ public:
 			//first look this index(hash)
 			if (hash_table[hash]->getKey() == _key)
 			{
-				hash_table[hash]->setKey(_value);
+				hash_table[hash]->setValue(_value);
 				return;
 			}
 			else

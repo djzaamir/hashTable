@@ -39,7 +39,7 @@ public:
 	{
 		return key;
 	}
-	const valueType& getValue()const
+	 valueType& getValue()
 	{
 		return value;
 	}
